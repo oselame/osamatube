@@ -3,10 +3,6 @@ import YTApi from './../../api';
 
 const API_KEY = YTApi;
 
-
-
-
-
 export const buscaVideoInicio = () => {
     return {
         type: 'BUSCA_VIDEO_INICIO',
