@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { reproduzVideo } from '../store/actions/reproduz-video';
+
 import { List, Image, Dimmer, Loader } from 'semantic-ui-react';
+import { dispatch } from 'rxjs/internal/observable/range';
 
 class VideoList extends Component {
 
     renderVideo(video) {
         return (
             <List animated verticalAlign='middle' key={video.etag}>
-                <List.Item>
+                <List.Item onClick={() => this.props.reproduz(video)}>
                     <Image src={video.snippet.thumbnails.default.url} />
                     <List.Content>
                         <List.Header>{video.snippet.title}</List.Header>
@@ -46,4 +49,10 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, null)(VideoList);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        reproduz: (video) => dispatch(reproduzVideo(video))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
