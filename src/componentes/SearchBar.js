@@ -7,6 +7,11 @@ import { buscaVideo } from '../store/actions/busca-video';
 
 class SearchBar extends Component {
 
+    constructor(props) {
+        super(props);
+        this.props.buscaVideo('Urubici Santa Catarina');
+    }
+
     pesquisaTermo = e => {
         if (e.keyCode === 13) {
             const termo = e.target.value;
