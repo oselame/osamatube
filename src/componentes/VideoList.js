@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { List, Image } from 'semantic-ui-react';
 
@@ -13,8 +14,18 @@ const VideoList = props => {
                     </List.Content>
                 </List.Item>
             </List>
+
+            
         </div>
     );
 }
 
-export default VideoList;
+const mapStateToProps = (state) => {
+    return {
+        videos: state.buscaReducer.videos,
+        carregando: state.buscaReducer.carregando,
+        erro: state.buscaReducer.erro
+    }
+}
+
+export default connect(mapStateToProps, null)(VideoList);
